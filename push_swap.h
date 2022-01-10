@@ -36,7 +36,7 @@ void rr(t_stack *a, t_stack *b);
 void rra(t_stack *a);
 void rrb(t_stack *b);
 void rrr(t_stack *a, t_stack *b);
-int calculate(t_stack *a, t_stack *b);
+void calculate(t_stack *a, t_stack *b);
 void insert(t_stack *a, t_stack *b, int i);
 void bring_up_min(t_stack *a);
 int find_min(t_stack *a);

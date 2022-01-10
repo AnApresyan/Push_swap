@@ -2,6 +2,7 @@
 
 void swap(t_stack *stack)
 {
+	printf("1");
         if (stack->top != NULL && stack->top->next != NULL)
         {
         	int a = top(stack);
@@ -29,12 +30,14 @@ void ss(t_stack *a, t_stack *b)
 
 void pa(t_stack *a, t_stack *b)
 {
+	printf("1");
 	if (b->size != 0)
 		push(a, pop(b));
 }
 
 void pb(t_stack *a, t_stack *b)
 {
+	printf("1");
 	if (a->size != 0)
 		push(b, pop(a));
 
@@ -42,12 +45,14 @@ void pb(t_stack *a, t_stack *b)
 
 void ra(t_stack *a)
 {
+	printf("1");
 	if (a->size > 1)
 		a->top = a->top->next;
 }
 
 void rb(t_stack *b)
 {
+	printf("1");
 	if (b->size > 1)
 		b->top = b->top->next;
 }
@@ -60,12 +65,14 @@ void rr(t_stack *a, t_stack *b)
 
 void rra(t_stack *a)
 {
+	printf("1");
         if (a->size > 1)
                 a->top = a->top->prev;
 }
 
 void rrb(t_stack *b)
 {
+	printf("1");
         if (b->size > 1)
                 b->top = b->top->prev;
 }

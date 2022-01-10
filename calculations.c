@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int calculate(t_stack *a, t_stack *b)
+void calculate(t_stack *a, t_stack *b)
 {
 	int num_of_operations = -1;
 	int i;
@@ -31,7 +31,9 @@ int calculate(t_stack *a, t_stack *b)
 		if (i != -1)
 			insert(a, b, i);
 		else
-			ra(a);		
+			ra(a);
+		//print_stack(a);
+		//print_stack(b);	
 	}
 	bring_up_min(a);
 }
@@ -45,15 +47,19 @@ void insert(t_stack *a, t_stack *b, int i)
 			if (i == 1)
 				sb(b);
 			else
-				rb(b);	
+				rb(b);
+			//printf("l\n");	
 			i--;
 		}	
 	}
 	else
 	{
 		while (b->size - i != 0)
+		{
 			rrb(b);
-		i++;
+			//printf("m\n");
+			i++;
+		}
 	}
 	pa(a, b);
 }

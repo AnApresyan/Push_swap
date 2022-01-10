@@ -1,29 +1,4 @@
 #include "push_swap.h"
-/*void swap(t_list *list)
-{
-	if (list != NULL && list->next != NULL)
-	{
-		int a = list->data;
-		list->data = list->next->data;
-		list->next->data = a;
-	}
-}
-
-void sa(t_list *a)
-{
-	swap(a);
-}
-
-void sb(t_list *b)
-{
-	swap(b);
-}
-
-void ss(t_list *a, t_list *b)
-{
-	swap(a);
-	swap(b);
-}*/
 
 int main(void)
 {
@@ -32,17 +7,10 @@ int main(void)
 	a->top = NULL;
 	a->size = 0;
 
-	pushing(a, 8);
+	pushing(a, 1);
 	
-	pushing(a, 20);
+	pushing(a, 100);
 	
-	pushing(a, 2);
-	pushing(a, 6);
-	pushing(a, 10);
-	pushing(a, 11);
-	pushing(a, 79);
-	pushing(a, 123);
-	pushing(a, 0);
 
         t_stack *b;
         b = (t_stack*)malloc(sizeof(t_stack));
@@ -50,19 +18,27 @@ int main(void)
         b->size = 0;
 
 
-	pushing(b, 1);
-	pushing(b, 2);
-	pushing(b, 3);
+	pushing(b, 13);
+	pushing(b, 22);
+	pushing(b, 43);
 	pushing(b, 4);
+	pushing(b, 24);
+	pushing(b, 12);
+	pushing(b, 87);
+	pushing(b, 23);
 	
 	print_stack(a);
 	print_stack(b);
 	
-	rrr(a, b);
-
+	//rrr(a, b);
+	calculate(a, b);
 	//rr(a, b);
 	print_stack(a);
 	print_stack(b);
+	//
+	//printf("min: %d", find_min(a));
+	//bring_up_min(a);
+	//print_stack(a);
 }
 
 void pushing(t_stack *stack, int a)
