@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "./libft/libft.h"
 
 typedef struct s_node
 {
@@ -40,4 +40,14 @@ void calculate(t_stack *a, t_stack *b);
 void insert(t_stack *a, t_stack *b, int i);
 void bring_up_min(t_stack *a);
 int find_min(t_stack *a);
+int is_number(char *str);
+int check(char *str);
+int check_dupls(int *arr, int size);
+void init(t_stack *a, int *num, int size);
+void mv_to_b(t_stack *a, t_stack *b, int *num);
+void less_than_five(t_stack *a, t_stack *b, int size);
+void size_three(t_stack *a, int next, int prev);
+void size_four(t_stack *a, t_stack *b);
+int check_four_correct(t_node *temp);
+void size_five(t_stack *a, t_stack *b);
 #endif

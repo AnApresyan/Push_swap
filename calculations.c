@@ -70,7 +70,7 @@ void bring_up_min(t_stack *a)
 	
 	min = find_min(a);
 
-	if (min < a->size/2)
+	if (min <= a->size/2)
 	{
 		while(min-- != 0)
 			ra(a);
