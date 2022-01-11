@@ -63,7 +63,6 @@ void main_algo(t_stack *a, t_stack *b)
 			j++;
 		}
 		insert_second_version(a, b, i, num);
-		//print_stack(a);
 	}
 	bring_up_min(a);
 }

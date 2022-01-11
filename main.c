@@ -40,6 +40,8 @@ int main(int argc, char **argv)
         b->size = 0;
 
 	init(a, num, argc - 1);
+
+
 	
 	//printf("\n");
 	//print_stack(a);
@@ -51,14 +53,22 @@ int main(int argc, char **argv)
 		printf("Num of operations: %d", glob);
 		return (1);
 	}
-	mv_to_b(a, b, num);
-	calculate(a, b);
-
-		
-	printf("Num of operations: %d", glob);
-	printf("\na, b");
+	printf("\n");
 	print_stack(a);
+	mv_to_b(a, b, num);
+	print_stack(a);
+	//printf("\n");
 	print_stack(b);
+
+	//printf("starting main algo");
+	//printf("%d", find_where_insert(a, 12));
+	//calculate(a, b);
+	main_algo(a, b);
+		
+	printf("Num of operations: %d\n", glob);
+	//printf("\na, b");
+	print_stack(a);
+	//print_stack(b);          
 
 
 	/*t_stack *a;
@@ -76,6 +86,12 @@ int main(int argc, char **argv)
         b->top = NULL;
         b->size = 0;
 
+*/
+	/*pushing(a, 1);
+	pushing(a, 92);
+	pushing(a, 73);
+	pushing(a, 58);
+	pushing(a, 22);
 
 	pushing(b, 13);
 	pushing(b, 22);
@@ -86,6 +102,15 @@ int main(int argc, char **argv)
 	pushing(b, 23);
 	
 	print_stack(a);
+	//insert_second_version(a, b, 2, 43);
+	print_stack(b);
+	printf("%d\n", find_where_insert(a, 43));
+	rotate_a(a, find_where_insert(a, 43));
+	insert_second_version(a, b, 2, 43);
+	print_stack(a);
+
+	print_stack(b);*/
+	/*print_stack(a);
 	print_stack(b);
 	
 	//rrr(a, b);
@@ -187,6 +212,7 @@ void mv_to_b(t_stack *a, t_stack *b, int *num)
 	int min = num[i];
 	int max = num[i];
 	int size;
+	t_stack *not_move;
 
 	while (i < a->size)
 	{
@@ -197,16 +223,123 @@ void mv_to_b(t_stack *a, t_stack *b, int *num)
 		i++;
 	}
 
-	size = a->size - 2;
+	not_move = should_not_push(min, max, a);
+	size = a->size - not_move->size;
 	while (b->size != size)
 	{
-		if (a->top->data != min && a->top->data != max)
+		if (not_push(a->top->data, not_move))
+			ra(a);
+		else
 			pb(a, b);
-		ra(a);
 	}
-	if (a->top->data < a->top->next->data)
-		ra(a);
+	//bring_up_max(max, a);
 }
+
+void bring_up_max(int max, t_stack *a)
+{
+ 	int i;
+	t_node *temp;
+
+	i = 0;
+	temp = a->top;
+	while (temp->data != max)
+	{
+		temp = temp->next;
+		i++;
+	}
+
+	//printf("\niiiiiiiiiiiiii\n%d", i);	
+        if (i <= a->size/2)
+        {
+                while(i != 0)
+		{
+                        ra(a);
+			i--;
+        	}
+	}
+        else
+	{
+                while(i != a->size)
+		{
+                        rra(a);
+			i++;
+		}
+	}
+}
+
+int not_push(int num, t_stack *stack)
+{
+	int i;
+	t_node *temp;
+
+	i = 0;
+	temp = stack->top;
+	while(i < stack->size)
+	{
+		if (temp->data == num)
+			return (1);
+		temp = temp->next;
+		i++;
+	}
+	return (0);
+}
+
+t_stack *should_not_push(int min, int max, t_stack *a)
+{
+	int i;
+	t_node *temp;
+
+	i = 0;
+	temp = a->top;
+	while(i < a->size)
+	{	
+		if(temp->data == min)
+			return min_to_max(min, max, temp);
+		//if(temp->data == max)
+		//	return max_to_min(min, max, temp);
+		i++;
+		temp = temp->next;
+	}
+	return NULL;
+}
+
+t_stack *min_to_max(int min, int max, t_node *temp)
+{
+
+        t_stack *stack;
+        stack = (t_stack*)malloc(sizeof(t_stack));
+        stack->top = NULL;
+        stack->size = 0;
+	push(stack, temp->data);
+	temp = temp->next;
+        while(temp->data != max)
+        {
+                if (temp->data > stack->top->data && temp->data < max)
+                        push(stack, temp->data);
+                temp = temp->next;
+        }
+        push(stack, temp->data);
+        return stack;
+}
+t_stack *max_to_min(int min, int max, t_node *temp)
+{
+
+        t_stack *stack;
+        stack = (t_stack*)malloc(sizeof(t_stack));
+        stack->top = NULL;
+        stack->size = 0;
+	push(stack, temp->data);
+	temp = temp->next;
+        while(temp->data != min)
+        {
+                if (temp->data < stack->top->data && temp->data > min)
+                        push(stack, temp->data);
+                temp = temp->next;
+        }
+        push(stack, temp->data);
+        return stack;
+}
+
 
 void less_than_five(t_stack *a, t_stack *b, int size)
 {
