@@ -1,95 +1,108 @@
 #include "push_swap.h"
 
-extern int glob;
-void swap(t_stack *stack)
-{
-	glob++;
-        if (stack->top != NULL && stack->top->next != NULL)
-        {
-        	int a = top(stack);
-                stack->top->data = stack->top->next->data;
-                stack->top->next->data = a;
+extern int	g_glob;
 
-        }
+void	insert_second_version(t_stack *a, t_stack *b, int i, int num)
+{
+	rotate_b(b, i);
+	rotate_a(a, find_where_insert(a, num));
+	pa(a, b);
 }
 
-void sa(t_stack *a)
+int	is_number(char *str)
 {
-	ft_putstr("sa\n");
-        swap(a);
+	int	i;
+
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] != '\0')
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-void sb(t_stack *b)
+/*void	insert(t_stack *a, t_stack *b, int i)
 {
-	
-	ft_putstr("sb\n");
-        swap(b);
+	if (i < b->size / 2)
+	{
+		while (i != 0)
+		{
+			if (i == 1)
+				sb(b);
+			else
+				rb(b);
+			i--;
+		}
+	}
+	else
+	{
+		while (b->size - i != 0)
+		{
+			rrb(b);
+			i++;
+		}
+	}
+	pa(a, b);
+}*/
+
+void	rotate_b(t_stack *b, int i)
+{
+	if (i <= b->size / 2)
+	{
+		while (i != 0)
+		{
+			if (i == 1)
+				sb(b);
+			else
+				rb(b);
+			i--;
+		}
+	}
+	else
+	{
+		while (b->size - i != 0)
+		{
+			rrb(b);
+			i++;
+		}
+	}
 }
 
-void ss(t_stack *a, t_stack *b)
-{
-        sa(a);
-        sb(b);
-}
-
-void pa(t_stack *a, t_stack *b)
-{
-	glob++;	
-	ft_putstr("pa\n");
-	if (b->size != 0)
-		push(a, pop(b));
-}
-
-void pb(t_stack *a, t_stack *b)
+void	rotate_a(t_stack *a, int i)
 {	
-	glob++;
-	ft_putstr("pb\n");
-	if (a->size != 0)
-		push(b, pop(a));
-
+	if (i < a->size / 2)
+	{
+		while (i != 0)
+		{
+			ra(a);
+			i--;
+		}
+	}
+	else
+	{
+		while (a->size - i != 0)
+		{
+			rra(a);
+			i++;
+		}
+	}
 }
 
-void ra(t_stack *a)
-{	
-	glob++;
-	ft_putstr("ra\n");
-	if (a->size > 1)
-		a->top = a->top->next;
-}
-
-void rb(t_stack *b)
+void	bring_up_min(t_stack *a)
 {
-	glob++;
-	ft_putstr("rb\n");
-	if (b->size > 1)
-		b->top = b->top->next;
-}
+	int	min;
 
-void rr(t_stack *a, t_stack *b)
-{
-	ra(a);
-	rb(b);
+	min = find_min(a);
+	if (min <= a->size / 2)
+	{
+		while (min-- != 0)
+			ra(a);
+	}
+	else
+		while (min++ != a->size)
+			rra(a);
 }
-
-void rra(t_stack *a)
-{
-	glob++;
-	ft_putstr("rra\n");
-        if (a->size > 1)
-                a->top = a->top->prev;
-}
-
-void rrb(t_stack *b)
-{
-	glob++;
-	ft_putstr("rrb\n");
-        if (b->size > 1)
-                b->top = b->top->prev;
-}
-
-void rrr(t_stack *a, t_stack *b)
-{
-        rra(a);
-        rrb(b);
-}
-

@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-int		ifthereis(char c, char const *set)
+int	ifthereis(char c, char const *set)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])
@@ -40,7 +40,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1);
 	while (end > start && ifthereis(s1[end - 1], set))
 		end--;
-	if (!(ptr = (char *)malloc(end - start + 1)))
+	ptr = (char *)malloc(end - start + 1);
+	if (!ptr)
 		return (NULL);
 	while (start < end)
 		ptr[i++] = s1[start++];

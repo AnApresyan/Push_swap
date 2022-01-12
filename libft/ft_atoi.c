@@ -14,8 +14,8 @@
 
 long	ft_atoi(const char *str)
 {
-	long result;
-	int sign;
+	long	result;
+	int		sign;
 
 	result = 0;
 	sign = 1;
@@ -34,4 +34,3 @@ long	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
-

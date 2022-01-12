@@ -14,7 +14,7 @@
 
 static int	ft_dc(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n < 0 || n == 0)
@@ -27,7 +27,7 @@ static int	ft_dc(int n)
 	return (i + 1);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int				n1;
 	unsigned int	n2;

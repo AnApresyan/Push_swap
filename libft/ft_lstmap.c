@@ -18,7 +18,8 @@ void (*del)(void *))
 	t_list	*c;
 	t_list	*start;
 
-	if (!(start = ft_lstnew(f(lst->content))))
+	start = ft_lstnew(f(lst->content));
+	if (!start)
 		ft_lstdelone(lst, del);
 	else
 	{
@@ -27,7 +28,8 @@ void (*del)(void *))
 	}
 	while (lst)
 	{
-		if (!(c->next = ft_lstnew(f(lst->content))))
+		c->next = ft_lstnew(f(lst->content));
+		if (!c->next)
 			ft_lstdelone(lst, del);
 		lst = lst->next;
 		c = c->next;
