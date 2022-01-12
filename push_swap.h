@@ -59,7 +59,12 @@ void rotate_b(t_stack *b, int i);
 void rotate_a(t_stack *a, int i);
 int not_push(int num, t_stack *stack);
 t_stack *should_not_push(int min, int max, t_stack *a);
-t_stack *min_to_max(int min, int max, t_node *temp);
-t_stack *max_to_min(int min, int max, t_node *temp);
+t_stack *min_to_max(int max, t_node *temp);
+//t_stack *max_to_min(int min, int max, t_node *temp);
 void bring_up_max(int max, t_stack *a);
+void right_order(t_stack *not_move, t_stack *a, t_stack *b);
+int mid_num(t_stack *a);
+void insert_to_b(int cheapest, t_stack *a, t_stack *b);
+int next_cheapest(t_stack *a, int mid, t_stack *not_move);
+int sort(int arr[], int size);
 #endif

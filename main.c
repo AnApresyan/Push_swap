@@ -54,11 +54,18 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	printf("\n");
+
+	/*printf("mid number: %d", mid_num(a));
+	t_stack *not_move = should_not_push(0, 98, a);
+	int cheapest = next_cheapest(a, mid_num(a), not_move);
+	printf("\nCheapest: %d", cheapest);
+	printf("\nNot Move: ");
+	print_stack(not_move);*/
 	print_stack(a);
 	mv_to_b(a, b, num);
-	print_stack(a);
+	//print_stack(a);
 	//printf("\n");
-	print_stack(b);
+	//print_stack(b);
 
 	//printf("starting main algo");
 	//printf("%d", find_where_insert(a, 12));
@@ -68,7 +75,7 @@ int main(int argc, char **argv)
 	printf("Num of operations: %d\n", glob);
 	//printf("\na, b");
 	print_stack(a);
-	//print_stack(b);          
+	print_stack(b);          
 
 
 	/*t_stack *a;
@@ -184,7 +191,7 @@ int check_dupls(int *arr, int size)
 	j = 0;
 	while (i < size)
 	{
-		j++;
+		j= i + 1;
 		while (j < size)
 		{
 			if (arr[i] == arr[j])
@@ -226,16 +233,141 @@ void mv_to_b(t_stack *a, t_stack *b, int *num)
 	not_move = should_not_push(min, max, a);
 	size = a->size - not_move->size;
 	while (b->size != size)
-	{
-		if (not_push(a->top->data, not_move))
+	{	
+		right_order(not_move, a, b);
+
+
+		//insert_to_b(not_move, next_cheapest(), a, b);
+		/*if (not_push(a->top->data, not_move))
 			ra(a);
 		else
-			pb(a, b);
+			pb(a, b);*/
 	}
 	//bring_up_max(max, a);
 }
 
-void bring_up_max(int max, t_stack *a)
+void right_order(t_stack *not_move, t_stack *a, t_stack *b)
+{
+	int mid;
+	int cheapest;
+
+	mid = mid_num(a);
+	cheapest = next_cheapest(a, mid, not_move);
+	if(cheapest == -1)
+	{
+		if (not_push(a->top->data, not_move))
+                        ra(a);
+                else
+                        pb(a, b);
+	}
+	else
+		insert_to_b(cheapest, a, b);
+		
+}
+
+/*int mid_num(t_stack *a)
+{
+	int i;
+	int j;
+	int mid;
+	t_node *temp;
+	int current_smallest;
+	
+	i = 0;
+	while (i != a->size /2)
+	{
+		j = 1;
+		temp = a->top->next;
+		current_smallest = a->top->data; 
+		while (j < a->size)
+		{
+			if ((temp->data < current_smallest || current_smallest <= mid) && (i == 0 || temp->data > mid))
+				current_smallest = temp->data;
+			temp = temp->next;
+			j++;
+		}
+		mid = current_smallest;
+		i++;
+	}
+	return (mid);
+}*/
+
+int mid_num(t_stack *a)
+{
+	int i;
+	t_node *temp;
+	int arr[a->size];
+
+	i = 0;
+	temp = a->top;
+	while(i < a->size)
+	{
+		arr[i] = temp->data;
+		i++;
+		temp = temp->next;
+	}
+	return sort(arr, a->size);
+}
+
+int sort(int arr[], int size)
+{
+	int temp;
+	int min;
+	int i;
+	int j;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		min = i;
+		j = i+1;
+		while(j < size)
+		{
+			if (arr[j] < arr[min])
+				min = j;
+			j++;
+		}
+		temp = arr[i];
+		arr[i] = arr[min];
+		arr[min] = temp;
+		i++;
+	}
+	return arr[size/2];
+}
+
+void insert_to_b(int cheapest, t_stack *a, t_stack *b)
+{
+	rotate_a(a, cheapest);
+	pb(a, b);
+}
+
+int next_cheapest(t_stack *a, int mid, t_stack *not_move)
+{
+	int numOperations;
+	t_node *temp;
+	int i;
+	int j;
+
+	j = -1;
+	i = 0;
+	temp = a->top;
+	while (i < a->size)
+	{
+		if (temp->data <= mid && !not_push(temp->data, not_move))
+		{
+			if (j == -1 || operations(a, i) < numOperations)
+			{
+				j = i;
+				numOperations = operations(a, i);
+			}
+		}
+		temp = temp->next;
+		i++;
+	}
+	return (j);
+}
+
+/*void bring_up_max(int max, t_stack *a)
 {
  	int i;
 	t_node *temp;
@@ -246,9 +378,7 @@ void bring_up_max(int max, t_stack *a)
 	{
 		temp = temp->next;
 		i++;
-	}
-
-	//printf("\niiiiiiiiiiiiii\n%d", i);	
+	}	
         if (i <= a->size/2)
         {
                 while(i != 0)
@@ -265,7 +395,7 @@ void bring_up_max(int max, t_stack *a)
 			i++;
 		}
 	}
-}
+}*/
 
 int not_push(int num, t_stack *stack)
 {
@@ -294,16 +424,14 @@ t_stack *should_not_push(int min, int max, t_stack *a)
 	while(i < a->size)
 	{	
 		if(temp->data == min)
-			return min_to_max(min, max, temp);
-		//if(temp->data == max)
-		//	return max_to_min(min, max, temp);
+			return min_to_max(max, temp);
 		i++;
 		temp = temp->next;
 	}
 	return NULL;
 }
 
-t_stack *min_to_max(int min, int max, t_node *temp)
+t_stack *min_to_max(int max, t_node *temp)
 {
 
         t_stack *stack;
@@ -321,7 +449,7 @@ t_stack *min_to_max(int min, int max, t_node *temp)
         push(stack, temp->data);
         return stack;
 }
-t_stack *max_to_min(int min, int max, t_node *temp)
+/*t_stack *max_to_min(int min, int max, t_node *temp)
 {
 
         t_stack *stack;
@@ -338,7 +466,7 @@ t_stack *max_to_min(int min, int max, t_node *temp)
         }
         push(stack, temp->data);
         return stack;
-}
+}*/
 
 
 void less_than_five(t_stack *a, t_stack *b, int size)
