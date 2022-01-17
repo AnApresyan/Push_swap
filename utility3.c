@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utility3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapresya <anahit.apresyan7@gmail.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/17 19:08:43 by aapresya          #+#    #+#             */
+/*   Updated: 2022/01/17 19:08:47 by aapresya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	insert_to_b(int cheapest, t_stack *a, t_stack *b)
@@ -9,7 +21,7 @@ void	insert_to_b(int cheapest, t_stack *a, t_stack *b)
 int	next_cheapest(t_stack *a, int mid, t_stack *not_move)
 {
 	t_node	*temp;
-	int		numOperations;
+	int		num_operations;
 	int		i;
 	int		j;
 
@@ -20,10 +32,10 @@ int	next_cheapest(t_stack *a, int mid, t_stack *not_move)
 	{
 		if (temp->data <= mid && !not_push(temp->data, not_move))
 		{
-			if (j == -1 || operations(a, i) < numOperations)
+			if (j == -1 || operations(a, i) < num_operations)
 			{
 				j = i;
-				numOperations = operations(a, i);
+				num_operations = operations(a, i);
 			}
 		}
 		temp = temp->next;

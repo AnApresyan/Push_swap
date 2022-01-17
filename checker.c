@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapresya <anahit.apresyan7@gmail.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/17 19:08:23 by aapresya          #+#    #+#             */
+/*   Updated: 2022/01/17 19:08:34 by aapresya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -87,7 +99,7 @@ void	checker(t_stack *a)
 	}
 	i = 1;
 	temp = a->top->next;
-	while (i < a->size)
+	while (i++ < a->size)
 	{
 		if (temp->data < temp->prev->data)
 		{
@@ -95,7 +107,6 @@ void	checker(t_stack *a)
 			return ;
 		}
 		temp = temp->next;
-		i++;
 	}
 	ft_putstr("OK\n");
 }

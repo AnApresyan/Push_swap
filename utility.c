@@ -1,6 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utility.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapresya <anahit.apresyan7@gmail.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/17 20:34:28 by aapresya          #+#    #+#             */
+/*   Updated: 2022/01/17 20:34:29 by aapresya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-extern int	g_glob;
+#include "push_swap.h"
 
 void	insert_second_version(t_stack *a, t_stack *b, int i, int num)
 {
