@@ -6,7 +6,7 @@ BONUS_SRCS = $(shell find "." \! -name 'main.c' -name "*.c")
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 
 all: ${NAME}
 
@@ -29,4 +29,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re .c.o
+.PHONY : all clean fclean re bonus

@@ -94,6 +94,7 @@ void	checker(t_stack *a)
 			ft_putstr("KO\n");
 			return ;
 		}
+		temp = temp->next;
 		i++;
 	}
 	ft_putstr("OK\n");

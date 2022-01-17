@@ -20,6 +20,6 @@ void	rrr(t_stack *a, t_stack *b, int print)
 
 int	error_message(void)
 {
-	ft_putstr("ERROR\n");
+	ft_putstr("Error\n");
 	return (0);
 }
