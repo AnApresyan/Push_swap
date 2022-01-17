@@ -7,7 +7,7 @@ void	less_than_five(t_stack *a, t_stack *b, int size)
 	if (size == 2)
 	{
 		if (a->top->data > a->top->next->data)
-			sa(a);
+			sa(a, 1);
 	}
 	else if (size == 3)
 		size_three(a, a->top->next->data, a->top->prev->data);
@@ -23,22 +23,22 @@ void	size_three(t_stack *a, int next, int prev)
 
 	top = a->top->data;
 	if (top < next && top > prev)
-		rra(a);
+		rra(a, 1);
 	else if (top > next && next > prev)
 	{	
-		sa(a);
-		rra(a);
+		sa(a, 1);
+		rra(a, 1);
 	}
 	else if (top > next && next < prev && top > prev)
-		ra(a);
+		ra(a, 1);
 	else if (!(top < next && next < prev))
 	{
-		ra(a);
-		sa(a);
+		ra(a, 1);
+		sa(a, 1);
 		if (a->top->data < a->top->next->data)
-			rra(a);
+			rra(a, 1);
 		else
-			ra(a);
+			ra(a, 1);
 	}
 }
 
@@ -47,9 +47,9 @@ void	size_four(t_stack *a, t_stack *b)
 	if (check_four_correct(a->top))
 		return ;
 	bring_up_min(a);
-	pb(a, b);
+	pb(a, b, 1);
 	size_three(a, a->top->next->data, a->top->prev->data);
-	pa(a, b);
+	pa(a, b, 1);
 }
 
 int	check_four_correct(t_node *temp)
@@ -72,7 +72,7 @@ void	size_five(t_stack *a, t_stack *b)
 	if (check_four_correct(a->top->next) && a->top->data < a->top->next->data)
 		return ;
 	bring_up_min(a);
-	pb(a, b);
+	pb(a, b, 1);
 	size_four(a, b);
-	pa(a, b);
+	pa(a, b, 1);
 }

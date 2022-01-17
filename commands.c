@@ -1,37 +1,41 @@
 #include "push_swap.h"
 
-extern int	g_glob;
+int	g_glob;
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, int print)
 {
-	ft_putstr("sa\n");
+	if (print)
+		ft_putstr("sa\n");
 	swap(a);
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, int print)
 {
-	ft_putstr("sb\n");
+	if (print)
+		ft_putstr("sb\n");
 	swap(b);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, int print)
 {
-	sa(a);
-	sb(b);
+	sa(a, print);
+	sb(b, print);
 }
 
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_stack *a, t_stack *b, int print)
 {
 	g_glob++;
-	ft_putstr("pa\n");
+	if (print)
+		ft_putstr("pa\n");
 	if (b->size != 0)
 		push(a, pop(b));
 }
 
-void	pb(t_stack *a, t_stack *b)
+void	pb(t_stack *a, t_stack *b, int print)
 {	
 	g_glob++;
-	ft_putstr("pb\n");
+	if (print)
+		ft_putstr("pb\n");
 	if (a->size != 0)
 		push(b, pop(a));
 }

@@ -6,7 +6,7 @@ void	insert_second_version(t_stack *a, t_stack *b, int i, int num)
 {
 	rotate_b(b, i);
 	rotate_a(a, find_where_insert(a, num));
-	pa(a, b);
+	pa(a, b, 1);
 }
 
 int	is_number(char *str)
@@ -56,9 +56,9 @@ void	rotate_b(t_stack *b, int i)
 		while (i != 0)
 		{
 			if (i == 1)
-				sb(b);
+				sb(b, 1);
 			else
-				rb(b);
+				rb(b, 1);
 			i--;
 		}
 	}
@@ -66,7 +66,7 @@ void	rotate_b(t_stack *b, int i)
 	{
 		while (b->size - i != 0)
 		{
-			rrb(b);
+			rrb(b, 1);
 			i++;
 		}
 	}
@@ -78,7 +78,7 @@ void	rotate_a(t_stack *a, int i)
 	{
 		while (i != 0)
 		{
-			ra(a);
+			ra(a, 1);
 			i--;
 		}
 	}
@@ -86,7 +86,7 @@ void	rotate_a(t_stack *a, int i)
 	{
 		while (a->size - i != 0)
 		{
-			rra(a);
+			rra(a, 1);
 			i++;
 		}
 	}
@@ -100,9 +100,9 @@ void	bring_up_min(t_stack *a)
 	if (min <= a->size / 2)
 	{
 		while (min-- != 0)
-			ra(a);
+			ra(a, 1);
 	}
 	else
 		while (min++ != a->size)
-			rra(a);
+			rra(a, 1);
 }

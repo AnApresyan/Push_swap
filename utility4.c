@@ -47,9 +47,9 @@ void	right_order(t_stack *not_move, t_stack *a, t_stack *b)
 	if (cheapest == -1)
 	{
 		if (not_push(a->top->data, not_move))
-			ra(a);
+			ra(a, 1);
 		else
-			pb(a, b);
+			pb(a, b, 1);
 	}
 	else
 		insert_to_b(cheapest, a, b);

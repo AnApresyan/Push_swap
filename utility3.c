@@ -3,7 +3,7 @@
 void	insert_to_b(int cheapest, t_stack *a, t_stack *b)
 {
 	rotate_a(a, cheapest);
-	pb(a, b);
+	pb(a, b, 1);
 }
 
 int	next_cheapest(t_stack *a, int mid, t_stack *not_move)

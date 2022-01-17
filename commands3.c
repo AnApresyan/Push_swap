@@ -15,10 +15,10 @@ void	swap(t_stack *stack)
 	}
 }
 
-void	rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b, int print)
 {
-	rra(a);
-	rrb(b);
+	rra(a, print);
+	rrb(b, print);
 }
 
 int	error_message(void)
