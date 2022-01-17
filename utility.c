@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+<<<<<<< HEAD
 #include "push_swap.h"
 
+=======
+>>>>>>> 574643a1a178ec051adfd7fbeb1b1f70a3ed4fe5
 void	insert_second_version(t_stack *a, t_stack *b, int i, int num)
 {
 	rotate_b(b, i);
