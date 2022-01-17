@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-extern int	g_glob;
-
 void	insert_second_version(t_stack *a, t_stack *b, int i, int num)
 {
 	rotate_b(b, i);
