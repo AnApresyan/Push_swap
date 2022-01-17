@@ -1,10 +1,7 @@
 #include "push_swap.h"
 
-extern int	g_glob;
-
 void	ra(t_stack *a, int print)
-{	
-	g_glob++;
+{
 	if (print)
 		ft_putstr("ra\n");
 	if (a->size > 1)
@@ -13,7 +10,6 @@ void	ra(t_stack *a, int print)
 
 void	rb(t_stack *b, int print)
 {
-	g_glob++;
 	if (print)
 		ft_putstr("rb\n");
 	if (b->size > 1)
@@ -28,7 +24,6 @@ void	rr(t_stack *a, t_stack *b, int print)
 
 void	rra(t_stack *a, int print)
 {
-	g_glob++;
 	if (print)
 		ft_putstr("rra\n");
 	if (a->size > 1)
@@ -37,7 +32,6 @@ void	rra(t_stack *a, int print)
 
 void	rrb(t_stack *b, int print)
 {
-	g_glob++;
 	if (print)
 		ft_putstr("rrb\n");
 	if (b->size > 1)

@@ -1,43 +1,5 @@
 #include "push_swap.h"
 
-/*void calculate(t_stack *a, t_stack *b)
-{
-	int num_of_operations = -1;
-	int i;
-	int size;
-	t_node *temp;
-
-	while(b->size > 0)
-	{
-		temp = b->top;
-		size = b->size;
-		i = -1;
-		while (size > 0)
-		{
-			if(temp->data < a->top->data && temp->data > a->top->prev->data)
-			{
-				int current_ops = (b->size - size) < (b->size)/2 ? b->size - size : size;
-				if (i == -1 || current_ops < num_of_operations)
-				{
-					i = b->size - size;
-					num_of_operations = current_ops;
-				}
-				if (i == 0)
-					break;
-			}
-			temp = temp->next;
-			size--;
-		}
-		if (i != -1)
-			insert(a, b, i);
-		else
-			ra(a);
-		//print_stack(a);
-		//print_stack(b);	
-	}
-	bring_up_min(a);
-}*/
-
 void	main_algo(t_stack *a, t_stack *b)
 {
 	int		t;

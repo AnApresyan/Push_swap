@@ -8,8 +8,6 @@ BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 CC = gcc
 CFLAGS = -Wall -Wextra
 
-AR = ar csr
-
 all: ${NAME}
 
 ${NAME}: ${OBJS}
@@ -27,6 +25,7 @@ clean :
 fclean : clean
 	@${MAKE} fclean -C ./libft
 	@rm -rf ${NAME}
+	@rm -rf ${BONUS_NAME}
 
 re : fclean all
 

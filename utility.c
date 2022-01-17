@@ -25,30 +25,6 @@ int	is_number(char *str)
 	return (1);
 }
 
-/*void	insert(t_stack *a, t_stack *b, int i)
-{
-	if (i < b->size / 2)
-	{
-		while (i != 0)
-		{
-			if (i == 1)
-				sb(b);
-			else
-				rb(b);
-			i--;
-		}
-	}
-	else
-	{
-		while (b->size - i != 0)
-		{
-			rrb(b);
-			i++;
-		}
-	}
-	pa(a, b);
-}*/
-
 void	rotate_b(t_stack *b, int i)
 {
 	if (i <= b->size / 2)
